@@ -63,6 +63,23 @@ class ValueIterationAgent(ValueEstimationAgent):
         # Write value iteration code here
         "*** YOUR CODE HERE ***"
 
+        #
+        for _ in range(self.iterations):
+            newValues = self.values.copy()
+            for state in self.mdp.getStates():
+                actionValue = {}
+                for action in self.mdp.getPossibleActions(state):
+                    val = 0
+                    for nextState in self.mdp.getTransitionStatesAndProbs(state, action):
+                        val += nextState[1] * (self.mdp.getReward(state, action,nextState[0]) + self.discount * self.values[nextState[0]])
+                    actionValue[action] = val
+                if len(actionValue) != 0:
+                    newValues[state] = max(actionValue.values())
+                else:
+                    newValues[state] = 0
+            self.values = newValues
+
+
 
     def getValue(self, state):
         """
@@ -77,7 +94,12 @@ class ValueIterationAgent(ValueEstimationAgent):
           value function stored in self.values.
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        val = 0
+        for nextState in self.mdp.getTransitionStatesAndProbs(state, action):
+            val += nextState[1] * (self.mdp.getReward(state, action, nextState[0]) +
+                                   self.discount * self.values[nextState[0]])
+        return val
+        #util.raiseNotDefined()
 
     def computeActionFromValues(self, state):
         """
@@ -89,7 +111,14 @@ class ValueIterationAgent(ValueEstimationAgent):
           terminal state, you should return None.
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        if state == 'TERMINAL_STATE':
+            return None
+        actionValues = {}
+        for action in self.mdp.getPossibleActions(state):
+            actionValues[action] = self.computeQValueFromValues(state, action)
+
+        return max(actionValues, key = actionValues.get)
+        #util.raiseNotDefined()
 
     def getPolicy(self, state):
         return self.computeActionFromValues(state)
@@ -130,6 +159,20 @@ class AsynchronousValueIterationAgent(ValueIterationAgent):
 
     def runValueIteration(self):
         "*** YOUR CODE HERE ***"
+        for i in range(self.iterations):
+            newValues = self.values.copy()
+            state = self.mdp.getStates()[i%len(self.mdp.getStates())]
+            actionValue = {}
+            for action in self.mdp.getPossibleActions(state):
+                val = 0
+                for nextState in self.mdp.getTransitionStatesAndProbs(state, action):
+                    val += nextState[1] * (self.mdp.getReward(state, action,nextState[0]) + self.discount * self.values[nextState[0]])
+                actionValue[action] = val
+            if len(actionValue) != 0:
+                newValues[state] = max(actionValue.values())
+            else:
+                newValues[state] = 0
+            self.values = newValues
 
 class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
     """
@@ -150,4 +193,54 @@ class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
 
     def runValueIteration(self):
         "*** YOUR CODE HERE ***"
+        predecessors = dict()
+        for state in self.mdp.getStates():
+            predecessors[state] = set()
+
+        for state in self.mdp.getStates():
+            for action in self.mdp.getPossibleActions(state):
+                for nextState, prob in self.mdp.getTransitionStatesAndProbs(state, action):
+                    if prob > 0:
+                        predecessors[nextState].add(state)
+
+        queue = util.PriorityQueue()
+
+        for state in self.mdp.getStates():
+            if state is not 'TERMINAL_STATE':
+                diff1 = self.values[state]
+                diff2 = max([self.getQValue(state, action) for action in self.mdp.getPossibleActions(state)])
+                queue.update(state, -abs(diff1-diff2))
+
+        for _ in range(self.iterations):
+            if queue.isEmpty():
+                break
+            popState, val = queue.pop()
+
+            # update state's value using value iteration
+            actionValue = {}
+            for action in self.mdp.getPossibleActions(popState):
+                val = 0
+                for nextState, prob in self.mdp.getTransitionStatesAndProbs(popState, action):
+                    val += prob * (
+                            self.mdp.getReward(popState, action, nextState) + self.discount * self.values[nextState])
+                actionValue[action] = val
+            if len(actionValue) != 0:
+                self.values[popState] = max(actionValue.values())
+            else:
+                self.values[popState] = 0
+
+            # update state's value using diff value
+            #self.values[popState] = -val
+
+            for preState in predecessors[popState]:
+                diff1 = self.values[preState]
+                diff2 = max([self.getQValue(preState, action) for action in self.mdp.getPossibleActions(preState)])
+                diff = abs(diff1 - diff2)
+                if diff > self.theta:
+                    queue.update(preState, -diff)
+
+
+
+
+
 

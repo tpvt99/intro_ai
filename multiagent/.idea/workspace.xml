@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80d73c84-b9f9-474d-90b8-1ec8963763e7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/multiagent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/multiagent.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/multiAgents.py" beforeDir="false" afterPath="$PROJECT_DIR$/multiAgents.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +17,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/game.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="124">
+                <state relative-caret-position="11713">
                   <caret line="693" selection-start-line="693" selection-end-line="693" />
                   <folding>
                     <element signature="e#1050#1068#0" expanded="true" />
@@ -32,8 +29,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/multiAgents.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="392" lean-forward="true" selection-start-line="392" selection-end-line="392" />
+                <state relative-caret-position="1119">
+                  <caret line="392" selection-start-line="392" selection-end-line="392" />
                   <folding>
                     <element signature="e#660#694#0" expanded="true" />
                   </folding>
@@ -44,7 +41,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/autograder.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="124">
+                <state relative-caret-position="5083">
                   <caret line="306" selection-start-line="306" selection-end-line="306" />
                   <folding>
                     <element signature="e#696#710#0" expanded="true" />
@@ -56,7 +53,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/grading.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="132">
+                <state relative-caret-position="1241">
                   <caret line="80" selection-start-line="80" selection-end-line="80" />
                 </state>
               </provider>
@@ -74,7 +71,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/testClasses.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
+                <state relative-caret-position="2159">
                   <caret line="129" selection-start-line="129" selection-end-line="129" />
                 </state>
               </provider>
@@ -95,7 +92,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pacman.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="124">
+                <state relative-caret-position="11577">
                   <caret line="693" selection-start-line="693" selection-end-line="693" />
                   <folding>
                     <element signature="e#1978#2008#0" expanded="true" />
@@ -107,7 +104,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/multiagentTestClasses.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
+                <state relative-caret-position="8636">
                   <caret line="512" selection-start-line="512" selection-end-line="512" />
                 </state>
               </provider>
@@ -120,7 +117,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/multiAgents.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="139">
+                <state relative-caret-position="6596">
                   <caret line="388" selection-start-line="388" selection-end-line="388" />
                   <folding>
                     <element signature="e#660#694#0" expanded="true" />
@@ -132,8 +129,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/util.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="127">
-                  <caret line="680" selection-start-line="680" selection-end-line="680" />
+                <state relative-caret-position="349">
+                  <caret line="700" column="14" selection-start-line="700" selection-start-column="14" selection-end-line="700" selection-end-column="14" />
                 </state>
               </provider>
             </entry>
@@ -141,7 +138,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/search.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
+                <state relative-caret-position="1428">
                   <caret line="84" column="9" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="9" />
                 </state>
               </provider>
@@ -150,8 +147,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/searchAgents.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="138">
-                  <caret line="614" lean-forward="true" selection-start-line="614" selection-end-line="614" />
+                <state relative-caret-position="10319">
+                  <caret line="614" selection-start-line="614" selection-end-line="614" />
                   <folding>
                     <element signature="e#1354#1381#0" expanded="true" />
                   </folding>
@@ -188,9 +185,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="238" />
-    <option name="y" value="61" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="386" />
+    <option name="y" value="89" />
     <option name="width" value="1546" />
     <option name="height" value="938" />
   </component>
@@ -218,7 +215,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
-    <property name="last_opened_file_path" value="D:/Standalone Testbed" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../reinforcement" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RunDashboard">
@@ -341,9 +338,9 @@
     </configuration>
     <list>
       <item itemvalue="Python.Unnamed" />
+      <item itemvalue="Python.autograder" />
       <item itemvalue="Python.multiAgents" />
       <item itemvalue="Python.pacman" />
-      <item itemvalue="Python.autograder" />
       <item itemvalue="Python.scratch" />
     </list>
     <recent_temporary>
@@ -378,10 +375,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="386" y="89" width="1546" height="938" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14752372" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1856764" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -392,9 +388,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32827735" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.3716143" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.42608696" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50052685" side_tool="true" weight="0.26868907" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49947312" weight="0.26868907" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.49947312" visible="true" weight="0.26832297" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -480,20 +476,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ghostAgents.py">
+    <entry file="file://$PROJECT_DIR$/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+        <state relative-caret-position="11713">
+          <caret line="693" selection-start-line="693" selection-end-line="693" />
           <folding>
-            <element signature="e#659#681#0" expanded="true" />
+            <element signature="e#1050#1068#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/search.py">
+    <entry file="file://$PROJECT_DIR$/autograder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="84" column="9" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="9" />
+        <state relative-caret-position="5083">
+          <caret line="306" selection-start-line="306" selection-end-line="306" />
+          <folding>
+            <element signature="e#696#710#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="80" selection-start-line="80" selection-end-line="80" />
         </state>
       </provider>
     </entry>
@@ -504,50 +510,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/searchAgents.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="614" lean-forward="true" selection-start-line="614" selection-end-line="614" />
-          <folding>
-            <element signature="e#1354#1381#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="80" selection-start-line="80" selection-end-line="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testClasses.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
+        <state relative-caret-position="2159">
           <caret line="129" selection-start-line="129" selection-end-line="129" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autograder.py">
+    <entry file="file://$PROJECT_DIR$/ghostAgents.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="306" selection-start-line="306" selection-end-line="306" />
+        <state relative-caret-position="493">
+          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
           <folding>
-            <element signature="e#696#710#0" expanded="true" />
+            <element signature="e#659#681#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/multiagentTestClasses.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="512" selection-start-line="512" selection-end-line="512" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pacman.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
+        <state relative-caret-position="11577">
           <caret line="693" selection-start-line="693" selection-end-line="693" />
           <folding>
             <element signature="e#1978#2008#0" expanded="true" />
@@ -555,30 +537,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/util.py">
+    <entry file="file://$PROJECT_DIR$/multiagentTestClasses.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="680" selection-start-line="680" selection-end-line="680" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="693" selection-start-line="693" selection-end-line="693" />
-          <folding>
-            <element signature="e#1050#1068#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="8636">
+          <caret line="512" selection-start-line="512" selection-end-line="512" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/multiAgents.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="392" lean-forward="true" selection-start-line="392" selection-end-line="392" />
+        <state relative-caret-position="6596">
+          <caret line="388" selection-start-line="388" selection-end-line="388" />
           <folding>
             <element signature="e#660#694#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/search.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="84" column="9" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/searchAgents.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10319">
+          <caret line="614" selection-start-line="614" selection-end-line="614" />
+          <folding>
+            <element signature="e#1354#1381#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="700" column="14" selection-start-line="700" selection-start-column="14" selection-end-line="700" selection-end-column="14" />
         </state>
       </provider>
     </entry>
