@@ -376,20 +376,20 @@ class ParticleFilter(InferenceModule):
         """
         "*** YOUR CODE HERE ***" #Q6
         # beliefs = self.getBeliefDistribution()
-        # for xt in self.legalPositions:
+        # for xt in self.allPositions: # this must be allPositions, not legalPositions, otherwise wrong
         #    p_et_xt = self.getObservationProb(observation, gameState.getPacmanPosition(), \
         #                                      xt, self.getJailPosition())
         #    b_dash = p_et_xt * beliefs[xt]
         #    beliefs[xt] = b_dash
 
-        # This solutions is correct while above is wrong when tested with q7. Why?
+        # This solutions is correct while above is wrong when tested with q7 if loop through self.legalPositions. Why?
         beliefs = DiscreteDistribution()
         for p in self.particles:
             beliefs[p] += self.getObservationProb(observation, gameState.getPacmanPosition(), \
                                               p, self.getJailPosition())
         beliefs.normalize()
 
-        if beliefs.total() <= 1e-100:
+        if beliefs.total() == 0:
             self.initializeUniformly(gameState)
         else:
             self.particles = [beliefs.sample() for _ in range(int(self.numParticles))]
