@@ -146,25 +146,44 @@ class GreedyBustersAgent(BustersAgent):
              if livingGhosts[i+1]]
         minPosition = []
         minDistance = math.inf
-        "*** YOUR CODE HERE ***"
-        for ghostDistribution in livingGhostPositionDistributions:
-            maxPosition = max(ghostDistribution, key = ghostDistribution.get)
-            distance = self.distancer.getDistance(maxPosition, pacmanPosition)
-            print('distance ', distance)
-            if distance < minDistance:
-                minDistance = distance
-                minPosition = maxPosition
-        print('LV: ', len(livingGhostPositionDistributions))
-        pacmanActions = None
+        "*** YOUR CODE HERE ***" #Q4
+        # for ghostDistribution in livingGhostPositionDistributions:
+        #     maxPosition = max(ghostDistribution, key = ghostDistribution.get)
+        #     distance = self.distancer.getDistance(maxPosition, pacmanPosition)
+        #     print('distance ', distance)
+        #     if distance < minDistance:
+        #         minDistance = distance
+        #         minPosition = maxPosition
+        # pacmanActions = None
+        # minDistance = math.inf
+        #
+        # for legalAction in legal:
+        #     successorPosition = Actions.getSuccessor(pacmanPosition, legalAction)
+        #     print('SP ', successorPosition, ' MP ', minPosition)
+        #     if self.distancer.getDistance(successorPosition, minPosition) < minDistance:
+        #         minDistance = self.distancer.getDistance(successorPosition, minPosition)
+        #         pacmanActions = legalAction
+        # return pacmanActions
+        maxPositions = []
+        for eachGhostDistribution in livingGhostPositionDistributions:
+            maxBeliefs = max(eachGhostDistribution.values())
+            for ghostPosition in eachGhostDistribution.keys():
+                if eachGhostDistribution[ghostPosition] == maxBeliefs:
+                    maxPositions.append(ghostPosition)
+
+        pacmanAction = Directions.STOP
         minDistance = math.inf
 
         for legalAction in legal:
             successorPosition = Actions.getSuccessor(pacmanPosition, legalAction)
-            print('SP ', successorPosition, ' MP ', minPosition)
-            if self.distancer.getDistance(successorPosition, minPosition) < minDistance:
-                minDistance = self.distancer.getDistance(successorPosition, minPosition)
-                pacmanActions = legalAction
-        return pacmanActions
+            for ghostPosition in maxPositions:
+                print('Dis ', self.distancer.getDistance(successorPosition, ghostPosition), ' minDis ', minDistance,
+                      ' successor pos ', successorPosition, ' pacman ', pacmanPosition,' legalAc ', legalAction)
+                if self.distancer.getDistance(successorPosition, ghostPosition) < minDistance:
+                    minDistance = self.distancer.getDistance(successorPosition, ghostPosition)
+                    pacmanAction = legalAction
+        print('---------------')
+        return pacmanAction
 
 
 
