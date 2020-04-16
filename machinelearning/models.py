@@ -69,6 +69,23 @@ class RegressionModel(object):
     def __init__(self):
         # Initialize your model parameters here
         "*** YOUR CODE HERE ***"
+        self.hidden_dims = [10, 20]
+        self.weights = []
+        self.biases = []
+        self.num_input_features = 1
+        self.learning_rate = -1e-2
+
+        self.weights.append(nn.Parameter(self.num_input_features, self.hidden_dims[0]))
+        self.biases.append(nn.Parameter(1, self.hidden_dims[0]))
+        for index in range(1, len(self.hidden_dims)):
+            self.weights.append(nn.Parameter(self.hidden_dims[index-1], self.hidden_dims[index]))
+            self.biases.append(nn.Parameter(1, self.hidden_dims[index]))
+
+        self.output_weight = nn.Parameter(self.hidden_dims[-1], 1)
+        self.output_bias = nn.Parameter(1, 1)
+
+        self.activation_fn = nn.ReLU
+
 
     def run(self, x):
         """
@@ -80,6 +97,16 @@ class RegressionModel(object):
             A node with shape (batch_size x 1) containing predicted y-values
         """
         "*** YOUR CODE HERE ***"
+        for index in range(len(self.hidden_dims)):
+            x = nn.Linear(x, self.weights[index])
+            x = nn.AddBias(x, self.biases[index])
+            x = nn.ReLU(x)
+
+        x = nn.Linear(x, self.output_weight)
+        x = nn.AddBias(x, self.output_bias)
+
+        return x
+
 
     def get_loss(self, x, y):
         """
@@ -92,12 +119,29 @@ class RegressionModel(object):
         Returns: a loss node
         """
         "*** YOUR CODE HERE ***"
+        predictions = self.run(x)
+        return nn.SquareLoss(predictions, y)
 
     def train(self, dataset):
         """
         Trains the model.
         """
         "*** YOUR CODE HERE ***"
+        while True:
+            sum_loss = []
+            for x, y in dataset.iterate_once(20):
+                loss = self.get_loss(x, y)
+                sum_loss.append(nn.as_scalar(loss))
+                gradidents = nn.gradients(loss, [*self.weights, *self.biases, self.output_weight, self.output_bias])
+
+                for index in range(len(self.hidden_dims)):
+                    self.weights[index].update(gradidents[index], self.learning_rate)
+                    self.biases[index].update(gradidents[index+len(self.hidden_dims)], self.learning_rate)
+                self.output_weight.update(gradidents[-2], self.learning_rate)
+                self.output_bias.update(gradidents[-1], self.learning_rate)
+            print(sum(sum_loss) / 10)
+            if (sum(sum_loss) / 10) <= 0.02:
+                break
 
 class DigitClassificationModel(object):
     """
@@ -116,6 +160,23 @@ class DigitClassificationModel(object):
     def __init__(self):
         # Initialize your model parameters here
         "*** YOUR CODE HERE ***"
+        self.hidden_dims = [512, 32]
+        self.weights = []
+        self.biases = []
+        self.num_input_features = 784
+        self.learning_rate = -1e-1
+        self.batch_size = 50
+
+        self.weights.append(nn.Parameter(self.num_input_features, self.hidden_dims[0]))
+        self.biases.append(nn.Parameter(1, self.hidden_dims[0]))
+        for index in range(1, len(self.hidden_dims)):
+            self.weights.append(nn.Parameter(self.hidden_dims[index - 1], self.hidden_dims[index]))
+            self.biases.append(nn.Parameter(1, self.hidden_dims[index]))
+
+        self.output_weight = nn.Parameter(self.hidden_dims[-1], 10)
+        self.output_bias = nn.Parameter(1, 10)
+
+        self.activation_fn = nn.ReLU
 
     def run(self, x):
         """
@@ -132,6 +193,16 @@ class DigitClassificationModel(object):
                 (also called logits)
         """
         "*** YOUR CODE HERE ***"
+        for index in range(len(self.hidden_dims)):
+            x = nn.Linear(x, self.weights[index])
+            x = nn.AddBias(x, self.biases[index])
+            x = nn.ReLU(x)
+
+        x = nn.Linear(x, self.output_weight)
+        x = nn.AddBias(x, self.output_bias)
+
+        return x
+
 
     def get_loss(self, x, y):
         """
@@ -148,11 +219,33 @@ class DigitClassificationModel(object):
         """
         "*** YOUR CODE HERE ***"
 
+        predictions = self.run(x)
+        return nn.SoftmaxLoss(predictions, y)
+
     def train(self, dataset):
         """
         Trains the model.
         """
         "*** YOUR CODE HERE ***"
+
+        for i in range(100000):
+            sum_loss = []
+            for x, y in dataset.iterate_once(self.batch_size):
+                loss = self.get_loss(x, y)
+                sum_loss.append(nn.as_scalar(loss))
+                gradidents = nn.gradients(loss, [*self.weights, *self.biases, self.output_weight, self.output_bias])
+
+                for index in range(len(self.hidden_dims)):
+                    self.weights[index].update(gradidents[index], self.learning_rate)
+                    self.biases[index].update(gradidents[index+len(self.hidden_dims)], self.learning_rate)
+                self.output_weight.update(gradidents[-2], self.learning_rate)
+                self.output_bias.update(gradidents[-1], self.learning_rate)
+            val_accuracy = dataset.get_validation_accuracy()
+            print("Epoch {} with loss : {}, val accuracy: {}".format(i+1, sum(sum_loss) / 10, val_accuracy))
+            if val_accuracy >= 0.98:
+                break
+
+
 
 class LanguageIDModel(object):
     """
@@ -172,6 +265,33 @@ class LanguageIDModel(object):
 
         # Initialize your model parameters here
         "*** YOUR CODE HERE ***"
+        self.hidden_dims = [16, 32]
+        self.weights = []
+        self.biases = []
+        self.num_input_features = 1
+        self.learning_rate = -1e-2
+        self.batch_size = 20
+
+        self.weights.append(nn.Parameter(self.num_input_features, self.hidden_dims[0]))
+        self.biases.append(nn.Parameter(1, self.hidden_dims[0]))
+        for index in range(1, len(self.hidden_dims)):
+            self.weights.append(nn.Parameter(self.hidden_dims[index - 1], self.hidden_dims[index]))
+            self.biases.append(nn.Parameter(1, self.hidden_dims[index]))
+
+        self.output_weight = nn.Parameter(self.hidden_dims[-1], 10)
+        self.output_bias = nn.Parameter(1, 10)
+
+        self.activation_fn = nn.ReLU
+
+        self.weight_1 = nn.Parameter(self.num_chars, 128)
+        self.hidden_1 = nn.Parameter(128, 128)
+        self.output_1 = nn.Parameter(128, 64)
+
+        self.weight_2 = nn.Parameter(128, 32)
+        self.hidden_2 = nn.Parameter(32, 32)
+        self.output_2 = nn.Parameter(32, 5)
+
+
 
     def run(self, xs):
         """
@@ -204,6 +324,33 @@ class LanguageIDModel(object):
         """
         "*** YOUR CODE HERE ***"
 
+        hiddens = []
+
+        for index, x in enumerate(xs):
+            if index == 0:
+                hidden_states = nn.Linear(x, self.weight_1) # (batch_size, num_chars) * (num_chars, 32)
+                hidden_states = nn.ReLU(hidden_states)
+            else:
+                out1 = nn.Linear(x, self.weight_1) # (batch_size, num_chars) * (num_chars, 32)
+                out2 = nn.Linear(hidden_states, self.hidden_1) # (batch_size, 32) * (32, 32)
+                hidden_states = nn.Add(out1, out2)
+                hidden_states = nn.ReLU(hidden_states)
+            hiddens.append(hidden_states)
+
+        for index, x in enumerate(hiddens):
+            if index == 0:
+                hidden_states = nn.Linear(x, self.weight_2) # (batch_size, num_chars) * (num_chars, 32)
+                hidden_states = nn.ReLU(hidden_states)
+            else:
+                out1 = nn.Linear(x, self.weight_2) # (batch_size, num_chars) * (num_chars, 32)
+                out2 = nn.Linear(hidden_states, self.hidden_2) # (batch_size, 32) * (32, 32)
+                hidden_states = nn.Add(out1, out2)
+                hidden_states = nn.ReLU(hidden_states)
+
+        output = nn.Linear(hidden_states, self.output_2)
+
+        return output
+
     def get_loss(self, xs, y):
         """
         Computes the loss for a batch of examples.
@@ -219,9 +366,32 @@ class LanguageIDModel(object):
         Returns: a loss node
         """
         "*** YOUR CODE HERE ***"
+        predictions = self.run(xs)
+        return nn.SoftmaxLoss(predictions, y)
 
     def train(self, dataset):
         """
         Trains the model.
         """
         "*** YOUR CODE HERE ***"
+        for i in range(10000):
+            sum_loss = []
+            for x, y in dataset.iterate_once(self.batch_size):
+                loss = self.get_loss(x, y)
+                sum_loss.append(nn.as_scalar(loss))
+                grad_wrt_w1, grad_wrt_h1, grad_wrt_o1, grad_wrt_w2, grad_wrt_h2, grad_wrt_o2 \
+                        = nn.gradients(loss, [self.weight_1, self.hidden_1, self.output_1,
+                                            self.weight_2, self.hidden_2, self.output_2])
+
+                self.weight_1.update(grad_wrt_w1, self.learning_rate)
+                self.hidden_1.update(grad_wrt_h1, self.learning_rate)
+                self.output_1.update(grad_wrt_o1, self.learning_rate)
+
+                self.weight_2.update(grad_wrt_w2, self.learning_rate)
+                self.hidden_2.update(grad_wrt_h2, self.learning_rate)
+                self.output_2.update(grad_wrt_o2, self.learning_rate)
+
+            val_accuracy = dataset.get_validation_accuracy()
+            print("Epoch {} with loss : {}, val accuracy: {}".format(i+1, sum(sum_loss) / 10, val_accuracy))
+            if val_accuracy >= 0.85:
+                break
